@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+.bodyLoginPage {
+	background-image: url(/src/img/salle-cinéma.jpeg);
+	background-size: cover;
+}
+
+* {
+	font-family: 'Bebas Neue', cursive;
+	transition: 0.2s ease color, 0.4s ease font-size;
+}
+
+label {
+	top: 6px;
+	padding: 0 10px;
+	font-size: 18px;
+	z-index: 0;
+	transition: transform 0.2s;
+	color: white;
+}
+
+span {
+	font-size: 14;
+	color: red;
+}
+
+.bodyLoginPage {
+	display: flex;
+	flex: 1;
+	height: 100vh;
+	justify-content: center;
+}
+
+.containerLogin {
+	position: relative;
+	align-self: center;
+	justify-content: center;
+	text-align: center;
+	padding: 50px;
+	border: 1px solid black;
+	border-radius: 25px;
+	background-color: #dc040f;
+	border: 1px solid white;
+}
+
+.welcomeMessageContainer {
+	padding: 0px 30px;
+	position: absolute;
+	top: -20px;
+	left: 25%;
+	right: 25%;
+	border-radius: 15px;
+	background-color: #fff;
+	border-top: #dc040f solid 2px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	min-width: 300px;
+}
+
+input {
+	padding: 0px 10px;
+	height: 30px;
+	border-radius: 10px;
+}
+
+.divLabel {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	z-index: 2;
+}
+
+input[type='submit']:hover {
+	color: #dc040f;
+	font-size: 20px;
+}
