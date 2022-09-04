@@ -1,14 +1,13 @@
 body {
 	background-color: black;
-	padding-top: 150px;
 
 	height: 100%;
 }
 
-/* #bodyMoviesList {
-	he;
-	background-color: #dc040f;
-} */
+#bodyMoviesList {
+	padding-top: 150px;
+	margin: 0%;
+}
 
 /* NAVBAR */
 
@@ -37,6 +36,7 @@ img {
 	position: absolute;
 	right: 50%;
 	left: 45%;
+	cursor: pointer;
 }
 
 .navBar h1 {
@@ -50,7 +50,7 @@ img {
 	margin-left: 20px;
 }
 
-.navBar h2 {
+.filtre h2 {
 	color: #dc040f;
 	letter-spacing: 1px;
 	font-size: 40px;
@@ -90,8 +90,9 @@ img {
 
 .moviesList {
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	position: relative;
 	z-index: 1;
 }
@@ -108,19 +109,19 @@ img {
 
 .moviesListContainer:hover {
 	height: 310px;
-	width: 430px;
+	width: 32%;
 	cursor: pointer;
 }
 
 .movieCard {
-	border: white 2px solid;
+	border-radius: 10px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
 }
 .movieCard2 {
-	border: white 2px solid;
+	border-radius: 10px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -155,10 +156,11 @@ img {
 
 .bigMovieCard {
 	background-color: black;
-	border: 2px white solid;
+	border-radius: 10px;
 	width: 80%;
 	position: absolute;
-	height: 600px;
+	min-height: 700px;
+	max-height: auto;
 	left: 10%;
 	z-index: 10;
 	padding: 0;
@@ -166,19 +168,29 @@ img {
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
+	overflow: scroll;
+	padding-bottom: 20px;
 }
 
 .bigMovieCard .titleBigCard {
 	font-size: 60px;
 	text-align: center;
 	margin: 0px;
+}
+
+.containerHeaderBigCard {
+	height: 80px;
+	width: 100%;
 	background-color: #000000cd;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .containerInfos {
 	background-color: #000000cd;
 	width: 100%;
-	height: 170px;
+	height: auto;
 }
 
 .info {
@@ -239,7 +251,6 @@ img {
 }
 
 .arrow {
-	position: absolute;
 	font-size: 50px;
 	margin: 10px;
 }
@@ -250,7 +261,9 @@ img {
 }
 
 .filtre {
-	position: absolute;
+	position: fixed;
+	z-index: 9;
+	left: 1px;
 	width: 100%;
 	height: 50px;
 	padding: 10px;
@@ -258,6 +271,7 @@ img {
 	background-color: rgba(255, 255, 255, 0.8);
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 .filtre span {
@@ -267,9 +281,7 @@ img {
 }
 
 .checkbox {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	color: white;
 }
 
 .checkbox1 {
@@ -284,4 +296,42 @@ img {
 .uncheckBox {
 	font-size: 25px;
 	cursor: pointer;
+	color: white;
+}
+
+/* .movieCard:hover > .unlike {
+	opacity: 100%;
+} */
+
+.like {
+	font-size: 50px;
+	/* margin-left: 88%; */
+
+	padding: 10px;
+	color: white;
+	opacity: 100%;
+	transition: opacity 0.3s ease, font-size 0.2s ease;
+}
+.unlike {
+	font-size: 50px;
+	/* margin-left: 88%; */
+
+	padding: 10px;
+	color: white;
+	opacity: 100%;
+	transition: opacity 0.3s ease, font-size 0.2s ease;
+}
+
+.unlike:hover {
+	font-size: 55px;
+}
+
+.like:hover {
+	font-size: 55px;
+}
+
+.flex_center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
