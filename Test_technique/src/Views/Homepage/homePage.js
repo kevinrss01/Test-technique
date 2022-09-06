@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/homePage.css';
-// import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 const HomepageContainer = () => {
 	const [youShouldNotPass, setYouShouldNotPass] = useState('NOPE');

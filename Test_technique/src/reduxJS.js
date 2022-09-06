@@ -1,7 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-// const initialValue = { idMovie: [] };
-
 export const movieSlice = createSlice({
 	name: 'movie',
 	initialState: [{ idMovie: 1 }],
