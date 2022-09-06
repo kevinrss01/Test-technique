@@ -1,6 +1,6 @@
 const listOfMovies = [
 	{
-		poster_path: 'https://images5.alphacoders.com/677/677723.jpg',
+		poster_path: 'https://images3.alphacoders.com/677/677722.jpg',
 		adult: false,
 		overview:
 			'From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.',
@@ -17,7 +17,7 @@ const listOfMovies = [
 		vote_average: 5.91,
 	},
 	{
-		poster_path: 'https://images8.alphacoders.com/715/715602.jpg',
+		poster_path: 'https://images6.alphacoders.com/795/795840.jpg',
 		adult: false,
 		overview:
 			'The most dangerous former operative of the CIA is drawn out of hiding to uncover hidden truths about his past.',

@@ -1,4 +1,3 @@
-import figmaOrNotFigma from '../../img/Figma c mieux.png';
 import Data from 'Models/list-de-films';
 import '../CSS/homePageMovies.css';
 import { BiMoviePlay } from 'react-icons/bi';
@@ -8,43 +7,42 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { AiFillCheckSquare } from 'react-icons/ai';
 import { AiOutlineLike } from 'react-icons/ai';
 import { AiTwotoneLike } from 'react-icons/ai';
-import React, { useEffect, useState, useContext, use } from 'react';
+import { FiLogOut } from 'react-icons/fi';
+import { ImSad } from 'react-icons/im';
+import React, { useEffect, useState } from 'react';
 import homeflix from 'img/HomeFlix.png';
 import { ImCheckboxUnchecked } from 'react-icons/im';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addId, deleteId } from 'features/like';
+import { addId, deleteId } from 'reduxJS';
 
 const MoviesList = () => {
 	const [moviesList, setMoviesList] = useState([]);
 	const [showBigCard, setShowBigCard] = useState(false);
 	const [movieId, setMovieId] = useState('');
-	const [listOfIdMovie, setlistOfIdMovie] = useState([]);
 	const [checked, setChecked] = useState(false);
 	const [checked2, setChecked2] = useState(false);
+	const [cardIsHover, setCardIsHover] = useState(false);
+	const dispatch = useDispatch();
 
 	let navigate = useNavigate();
 	const movieInfo = useSelector((state) =>
 		state.movie.map((val) => val.idMovie)
 	); //to get data
-	const dispatch = useDispatch();
+
+	console.log(movieInfo);
 
 	useEffect(() => {
 		setMoviesList(Data);
 		console.log(moviesList);
-		setlistOfIdMovie(movieInfo.map((value) => value.idMovie));
-	}, []);
+	}, [moviesList]);
 
 	console.log(movieInfo);
 
 	const getMovieId = (id) => {
 		setMovieId(id);
 	};
-
-	// let checkId = (id) => {
-	// 	movieInfo.find((t) => t.idMovie === id);
-	// };
 
 	const handleChange = () => {
 		setChecked(!checked);
@@ -53,6 +51,7 @@ const MoviesList = () => {
 	const handleChange2 = () => {
 		setChecked2(!checked2);
 	};
+
 	return (
 		<div id="bodyMoviesList">
 			<div className="navBar">
@@ -65,9 +64,19 @@ const MoviesList = () => {
 						navigate('/movies-list');
 					}}
 					src={homeflix}
+					alt=""
 				></img>
-			</div>
 
+				<div
+					className="logout"
+					onClick={() => {
+						navigate('/login');
+					}}
+				>
+					<FiLogOut className="iconLogout" />
+					<h2>Se déconnecter</h2>
+				</div>
+			</div>
 			<div className="filtre flex_center">
 				<h2>
 					FILTRES <BsFilterSquareFill className="iconFilters" />
@@ -80,7 +89,7 @@ const MoviesList = () => {
 					className="checkbox1"
 				/>
 				<div className="checkbox flex_center">
-					<span className="flex_center">
+					<span className="flex_center" onClick={handleChange}>
 						5 <AiFillStar className="starIconFilter" /> et plus
 					</span>
 					{checked ? (
@@ -92,7 +101,9 @@ const MoviesList = () => {
 						/>
 					)}
 
-					<span className="flex_center">Films aimé</span>
+					<span className="flex_center" onClick={handleChange2}>
+						Films aimé
+					</span>
 					{checked2 ? (
 						<AiFillCheckSquare className="iconCheck" onClick={handleChange2} />
 					) : (
@@ -103,6 +114,13 @@ const MoviesList = () => {
 					)}
 				</div>
 			</div>
+			{checked2 && movieInfo.length === 1 ? (
+				<span className="noFilm">
+					Vous n'avez aimé aucun film <ImSad />
+				</span>
+			) : (
+				<></>
+			)}
 
 			<div className="moviesList">
 				{moviesList.map((value, key) => {
@@ -182,6 +200,7 @@ const MoviesList = () => {
 							<div
 								key={key}
 								className={showBigCard ? 'movieCard2' : 'movieCard'}
+								id={cardIsHover && movieId !== value.id ? 'opacity8' : ''}
 								style={{
 									backgroundImage: `url(${value.poster_path})`,
 									backgroundSize: 'cover',
@@ -190,6 +209,13 @@ const MoviesList = () => {
 									getMovieId(value.id);
 									setShowBigCard(true);
 								}}
+								onMouseEnter={() => {
+									if (!showBigCard) {
+										setCardIsHover(true);
+										getMovieId(value.id);
+									}
+								}}
+								onMouseLeave={() => setCardIsHover(false)}
 							>
 								<h1 className="title">{value.title}</h1>
 							</div>
