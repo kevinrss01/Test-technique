@@ -1,21 +1,18 @@
 import Data from 'Models/list-de-films';
 import '../CSS/homePageMovies.css';
-import { BiMoviePlay } from 'react-icons/bi';
 import { BsFilterSquareFill } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { AiFillCheckSquare } from 'react-icons/ai';
 import { AiOutlineLike } from 'react-icons/ai';
 import { AiTwotoneLike } from 'react-icons/ai';
-import { FiLogOut } from 'react-icons/fi';
 import { ImSad } from 'react-icons/im';
 import React, { useEffect, useState } from 'react';
-import homeflix from 'img/HomeFlix.png';
 import { ImCheckboxUnchecked } from 'react-icons/im';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addId, deleteId } from 'reduxJS';
+import Navbar from './navbar';
 
 const MoviesList = () => {
 	const [moviesList, setMoviesList] = useState([]);
@@ -26,19 +23,13 @@ const MoviesList = () => {
 	const [cardIsHover, setCardIsHover] = useState(false);
 	const dispatch = useDispatch();
 
-	let navigate = useNavigate();
 	const movieInfo = useSelector((state) =>
 		state.movie.map((val) => val.idMovie)
 	); //to get data
 
-	console.log(movieInfo);
-
 	useEffect(() => {
 		setMoviesList(Data);
-		console.log(moviesList);
 	}, [moviesList]);
-
-	console.log(movieInfo);
 
 	const getMovieId = (id) => {
 		setMovieId(id);
@@ -54,29 +45,8 @@ const MoviesList = () => {
 
 	return (
 		<div id="bodyMoviesList">
-			<div className="navBar">
-				<div className="navBarListMovies">
-					<h1>LISTE DES FILMS</h1>
-					<BiMoviePlay className="iconMovie" />
-				</div>
-				<img
-					onClick={() => {
-						navigate('/movies-list');
-					}}
-					src={homeflix}
-					alt=""
-				></img>
+			<Navbar />
 
-				<div
-					className="logout"
-					onClick={() => {
-						navigate('/login');
-					}}
-				>
-					<FiLogOut className="iconLogout" />
-					<h2>Se déconnecter</h2>
-				</div>
-			</div>
 			<div className="filtre flex_center">
 				<h2>
 					FILTRES <BsFilterSquareFill className="iconFilters" />

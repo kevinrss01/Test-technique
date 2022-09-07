@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { BiUserCircle } from 'react-icons/bi';
@@ -11,44 +11,33 @@ import * as Yup from 'yup';
 import '../CSS/style_login.css';
 
 const LoginContainer = () => {
-	const [checked, setChecked] = useState(false);
-
+	let navigate = useNavigate();
 	const initialValues = {
 		email: '',
 		password: '',
 	};
 
-	const handleChange = () => {
-		setChecked(!checked);
-	};
-
-	const onSubmit = (data) => {
+	const onSubmit = () => {
 		navigate('/movies-list');
 	};
-
-	let navigate = useNavigate();
 
 	useEffect(() => {}, []);
 
 	//control Input
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
-			.min(3, 'Email trop court')
-			.max(30, "Le nom d'utilisateur ne peut contenir que 30 caractères")
+			.min(6, 'Email trop court')
+			.max(50, "L'email ne peut contenir que 30 caractères")
 			.required('Email Obligatoire'),
 		password: Yup.string()
-			.min(4, 'Mot de passe trop court')
-			.max(20, 'Mot de passe trop long')
+			.min(6, 'Mot de passe trop court')
+			.max(40, 'Mot de passe trop long')
 			.required('Mot de passe obligatoire'),
 	});
 
 	return (
 		<div className="bodyLoginPage">
 			<div className="containerLogin">
-				<div className="welcomeMessageContainer">
-					Bienvenue
-					<br /> jeune padawan
-				</div>
 				<Formik
 					initialValues={initialValues}
 					onSubmit={onSubmit}
@@ -91,12 +80,7 @@ const LoginContainer = () => {
 
 						<div className="checkAndLogin flexCentre">
 							<div className="souvenir">
-								<input
-									type="checkbox"
-									checked={checked}
-									onChange={handleChange}
-									className="rememberCheckbox"
-								/>
+								<input type="checkbox" className="rememberCheckbox" />
 								<span>Se souvenir de moi</span>
 							</div>
 
